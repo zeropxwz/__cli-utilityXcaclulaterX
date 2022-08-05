@@ -1,12 +1,8 @@
 const readArguments = require('@zeropxwz/read-arguments')
 
-
-
-const args: string[] = readArguments(process.argv)
-
-
-
 function calc (): void {
+
+    const args: string[] = readArguments(process.argv)
 
     var number: number = NaN
     var action: string = ''
