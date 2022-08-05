@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/zeropxwz/__cli-utilityXcaclulaterX/issues"
   },
-  "homepage": "https://github.com/zeropxwz/__cli-utilityXcaclulaterX#readme"
+  "homepage": "https://github.com/zeropxwz/__cli-utilityXcaclulaterX#readme",
+  "dependencies": {
+    "@zeropxwz/random-number": "^1.0.1",
+    "@zeropxwz/read-arguments": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.4"
+  }
 }
