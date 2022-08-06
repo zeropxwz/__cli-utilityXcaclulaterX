@@ -35,8 +35,8 @@ class Calculator {
         }
     }
     static exec() {
-        Calculator.parse();
-        Calculator.calc();
+        this.parse();
+        this.calc();
         console.log(this.result);
     }
 }
