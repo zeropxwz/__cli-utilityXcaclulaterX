@@ -1,7 +1,6 @@
 const readArguments = require('@zeropxwz/read-arguments')
 
 
-
 class Calculator {
 
     static readonly args: Array<string> = readArguments(process.argv)
