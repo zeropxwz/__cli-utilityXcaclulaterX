@@ -1,38 +1,47 @@
 "use strict";
 const readArguments = require('@zeropxwz/read-arguments');
-function calc() {
-    const args = readArguments(process.argv);
-    var number = NaN;
-    var action = '';
-    var result = 0;
-    for (let i = 0; i < args.length; i++) {
-        if (i % 2 === 0) {
-            number = Number(args[i]);
-            switch (action) {
+class Calculator {
+    static parse() {
+        for (let i = 0; i < this.args.length; i++) {
+            if (i % 2 === 0) {
+                this.operands.push(Number(this.args[i]));
+            }
+            else {
+                this.operators.push(this.args[i]);
+            }
+        }
+    }
+    static calc() {
+        for (let i = 0; i < this.operators.length; i++) {
+            switch (this.operators[i]) {
                 case '+':
-                    result += number;
+                    this.result += this.operands[i];
                     break;
                 case '-':
-                    result -= number;
+                    this.result -= this.operands[i];
                     break;
                 case 'x':
-                    result *= number;
+                    this.result *= this.operands[i];
                     break;
                 case '/':
-                    result /= number;
+                    this.result /= this.operands[i];
                     break;
-                case '':
-                    result = number;
+                case 'init':
+                    this.result = this.operands[i];
                     break;
                 default:
                     console.error('error: unknow operator');
-                    return;
             }
         }
-        if (i % 2 === 1) {
-            action = args[i];
-        }
     }
-    console.log(result);
+    static exec() {
+        Calculator.parse();
+        Calculator.calc();
+        console.log(this.result);
+    }
 }
-calc();
+Calculator.args = readArguments(process.argv);
+Calculator.operands = [];
+Calculator.operators = ['init'];
+Calculator.result = 0;
+Calculator.exec();
