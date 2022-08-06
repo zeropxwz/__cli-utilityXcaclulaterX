@@ -12,12 +12,14 @@ class Calculator {
     static parse () {
 
         for (let i = 0; i < this.args.length; i++)  {
+            
             if (i % 2 === 0) {
                 this.operands.push(Number(this.args[i]))
             }
             else {
                 this.operators.push(this.args[i])
             }
+
         }
     }
 
@@ -44,6 +46,7 @@ class Calculator {
                 default:
                     console.error('error: unknow operator')
             }
+            
         }
     }
 
