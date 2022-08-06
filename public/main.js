@@ -1,8 +1,10 @@
 "use strict";
-const readArguments = require('@zeropxwz/read-arguments');
-class Calculator {
-    static parse() {
-        for (let i = 0; i < this.args.length; i++) {
+var readArguments = require('@zeropxwz/read-arguments');
+var Calculator = /** @class */ (function () {
+    function Calculator() {
+    }
+    Calculator.parse = function () {
+        for (var i = 0; i < this.args.length; i++) {
             if (i % 2 === 0) {
                 this.operands.push(Number(this.args[i]));
             }
@@ -10,9 +12,9 @@ class Calculator {
                 this.operators.push(this.args[i]);
             }
         }
-    }
-    static calc() {
-        for (let i = 0; i < this.operators.length; i++) {
+    };
+    Calculator.calc = function () {
+        for (var i = 0; i < this.operators.length; i++) {
             switch (this.operators[i]) {
                 case '+':
                     this.result += this.operands[i];
@@ -33,15 +35,16 @@ class Calculator {
                     console.error('error: unknow operator');
             }
         }
-    }
-    static exec() {
+    };
+    Calculator.exec = function () {
         this.parse();
         this.calc();
         console.log(this.result);
-    }
-}
-Calculator.args = readArguments(process.argv);
-Calculator.operands = [];
-Calculator.operators = ['init'];
-Calculator.result = 0;
+    };
+    Calculator.args = readArguments(process.argv);
+    Calculator.operands = [];
+    Calculator.operators = ['init'];
+    Calculator.result = 0;
+    return Calculator;
+}());
 Calculator.exec();
