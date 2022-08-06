@@ -1,48 +1,60 @@
 const readArguments = require('@zeropxwz/read-arguments')
 
-function calc (): void {
-
-    const args: string[] = readArguments(process.argv)
-
-    var number: number = NaN
-    var action: string = ''
-
-    var result: number = 0
-
-    for (let i = 0; i < args.length; i++) {
-
-        if (i % 2 === 0) {
-            number = Number(args[i])
-
-            switch (action) {
-                case '+':
-                    result += number
-                    break
-                case '-':
-                    result -= number
-                    break
-                case 'x':
-                    result *= number
-                    break
-                case '/':
-                    result /= number
-                    break
 
 
-                case '':
-                    result = number
-                    break
-                default:
-                    console.error('error: unknow operator')
-                    return
+class Calculator {
+
+    static readonly args: Array<string> = readArguments(process.argv)
+
+    static operands:  Array<number> = []
+    static operators: Array<string> = ['init']
+
+    static result:    number = 0
+
+    static parse () {
+
+        for (let i = 0; i < this.args.length; i++)  {
+            if (i % 2 === 0) {
+                this.operands.push(Number(this.args[i]))
             }
-        }
-
-        if (i % 2 === 1) {
-            action = args[i]
+            else {
+                this.operators.push(this.args[i])
+            }
         }
     }
 
-    console.log(result)
+    static calc () {
+        for (let i = 0; i < this.operators.length; i++) {
+
+            switch (this.operators[i]) {
+                case '+':
+                    this.result += this.operands[i]
+                    break
+                case '-':
+                    this.result -= this.operands[i]
+                    break
+                case 'x':
+                    this.result *= this.operands[i]
+                    break
+                case '/':
+                    this.result /= this.operands[i]
+                    break
+
+                case 'init':
+                    this.result = this.operands[i]
+                    break
+                default:
+                    console.error('error: unknow operator')
+            }
+        }
+    }
+
+    static exec() {
+        Calculator.parse()
+        Calculator.calc()
+
+        console.log(this.result)
+    }
 }
-calc()
+
+Calculator.exec()
