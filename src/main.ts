@@ -10,8 +10,7 @@ class Calculator {
 
     static result:    number = 0
 
-    static parse () {
-
+    static parse (): void {
         for (let i = 0; i < this.args.length; i++)  {
             if (i % 2 === 0) {
                 this.operands.push(Number(this.args[i]))
@@ -22,9 +21,8 @@ class Calculator {
         }
     }
 
-    static calc () {
+    static calc (): void {
         for (let i = 0; i < this.operators.length; i++) {
-
             switch (this.operators[i]) {
                 case '+':
                     this.result += this.operands[i]
@@ -43,12 +41,12 @@ class Calculator {
                     this.result = this.operands[i]
                     break
                 default:
-                    console.error('error: unknow operator')
+                    return new Error('unknow operator')
             }
         }
     }
 
-    static exec() {
+    static exec(): void {
         this.parse()
         this.calc()
 
